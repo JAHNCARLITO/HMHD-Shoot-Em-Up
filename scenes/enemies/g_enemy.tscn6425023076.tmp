@@ -34,9 +34,8 @@ autoplay = "move"
 [node name="MoveComponent" parent="." index="1" unique_id=1218803175]
 velocity = Vector2(20, 0)
 
-[node name="BounceComponent" type="Node" parent="." index="2" unique_id=1596759079 node_paths=PackedStringArray("move_component")]
+[node name="BounceComponent" type="Node" parent="." index="2" unique_id=1596759079]
 script = ExtResource("3_jdn5i")
-move_component = NodePath("../MoveComponent")
 metadata/_custom_type_script = "uid://db47jxd0kpd51"
 
 [node name="VisibleOnScreenNotifier2D" parent="." index="3" unique_id=1901591997]
