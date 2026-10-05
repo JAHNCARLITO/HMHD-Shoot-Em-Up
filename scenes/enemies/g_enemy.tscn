@@ -1,0 +1,57 @@
+[gd_scene format=3 uid="uid://cqsg5mibb3gh1"]
+
+[ext_resource type="PackedScene" uid="uid://ctvhvi08inkp" path="res://scenes/enemies/enemy.tscn" id="1_mjfb4"]
+[ext_resource type="Texture2D" uid="uid://jpq387m0qkpt" path="res://assets/SMS Space Shooter Assets/sprite sheet.png" id="2_nbem2"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jdn5i"]
+atlas = ExtResource("2_nbem2")
+region = Rect2(102, 48, 26, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_fcftc"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jdn5i")
+}],
+"loop": 1,
+"name": &"move",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qc24j"]
+size = Vector2(24, 20)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_qc24j"]
+
+[node name="GEnemy" unique_id=270567738 instance=ExtResource("1_mjfb4")]
+
+[node name="AnimatedSprite2D" parent="." index="0" unique_id=247618018]
+sprite_frames = SubResource("SpriteFrames_fcftc")
+animation = &"move"
+autoplay = "move"
+
+[node name="MoveComponent" parent="." index="1" unique_id=1218803175]
+velocity = Vector2(0, 40)
+
+[node name="VisibleOnScreenNotifier2D" parent="." index="2" unique_id=1901591997]
+rect = Rect2(-11, -10, 24, 20)
+
+[node name="ScaleComponent" parent="." index="3" unique_id=1171800825]
+scale_duration = 1.0
+
+[node name="FlashComponent" parent="." index="4" unique_id=1005034716]
+flash_duration = 0.1
+
+[node name="StatsComponent" parent="." index="5" unique_id=1503786716]
+health = 2
+
+[node name="HurtboxComponent" parent="." index="6" unique_id=2026218762]
+light_mask = 2
+visibility_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtboxComponent" index="0" unique_id=1802953516]
+position = Vector2(1, 0)
+shape = SubResource("RectangleShape2D_qc24j")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent" parent_id_path=PackedInt32Array(2001757855) index="0" unique_id=780819325]
+shape = SubResource("CircleShape2D_qc24j")

@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://coar0w52ewb50"]
+
+[ext_resource type="PackedScene" uid="uid://be8qbmt0fe144" path="res://scenes/player/player.tscn" id="1_nnsk1"]
+[ext_resource type="Texture2D" uid="uid://crgaf1qvacusd" path="res://assets/Background_1/Background_1-3/Space BG_1-3_640x360.png" id="1_rwgxs"]
+[ext_resource type="PackedScene" uid="uid://b2ayxcirpbpw8" path="res://scenes/enemies/enemy_generator.tscn" id="4_k0juu"]
+
+[node name="World" type="Node2D" unique_id=1166276361]
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1075180974]
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("1_rwgxs")
+
+[node name="Player" parent="." unique_id=1478978707 instance=ExtResource("1_nnsk1")]
+position = Vector2(85, 126)
+
+[node name="EnemyGenerator" parent="." unique_id=1041299811 instance=ExtResource("4_k0juu")]

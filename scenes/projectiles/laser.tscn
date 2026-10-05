@@ -1,0 +1,51 @@
+[gd_scene format=3 uid="uid://bkpot1irqdpnk"]
+
+[ext_resource type="Script" uid="uid://cusi2yxnvi6uo" path="res://scenes/projectiles/laser.gd" id="1_cwxws"]
+[ext_resource type="Texture2D" uid="uid://jpq387m0qkpt" path="res://assets/SMS Space Shooter Assets/sprite sheet.png" id="1_e6ads"]
+[ext_resource type="Script" uid="uid://bn3vnresmmqyw" path="res://components/move_component.gd" id="2_cwxws"]
+[ext_resource type="Script" uid="uid://ba5ddbrjvkbe7" path="res://components/scale_component.gd" id="4_uxcji"]
+[ext_resource type="Script" uid="uid://c2gw6t5lf30ht" path="res://components/flash_component.gd" id="5_w364t"]
+[ext_resource type="Script" uid="uid://coixhqnpfwn4d" path="res://components/hitbox_component.gd" id="6_avy1s"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xepy2"]
+size = Vector2(4, 4)
+
+[node name="Laser" type="Node2D" unique_id=1313421962]
+script = ExtResource("1_cwxws")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=258467314]
+texture = ExtResource("1_e6ads")
+region_enabled = true
+region_rect = Rect2(48.839508, 103.11689, 6.452671, 7.703705)
+
+[node name="MoveComponent" type="Node" parent="." unique_id=542751286 node_paths=PackedStringArray("actor")]
+script = ExtResource("2_cwxws")
+actor = NodePath("..")
+velocity = Vector2(0, -200)
+metadata/_custom_type_script = "uid://bn3vnresmmqyw"
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=1978887316]
+rect = Rect2(-2, -1, 4, 4)
+
+[node name="ScaleComponent" type="Node" parent="." unique_id=1581161896 node_paths=PackedStringArray("sprite")]
+script = ExtResource("4_uxcji")
+sprite = NodePath("..")
+scale_amount = Vector2(2, 2)
+scale_duration = 1.0
+metadata/_custom_type_script = "uid://ba5ddbrjvkbe7"
+
+[node name="FlashComponent" type="Node" parent="." unique_id=1047789982 node_paths=PackedStringArray("sprite")]
+script = ExtResource("5_w364t")
+sprite = NodePath("../Sprite2D")
+flash_duration = 0.1
+metadata/_custom_type_script = "uid://c2gw6t5lf30ht"
+
+[node name="HitboxComponent" type="Area2D" parent="." unique_id=172898654]
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("6_avy1s")
+metadata/_custom_type_script = "uid://coixhqnpfwn4d"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent" unique_id=1871288695]
+position = Vector2(0, 1)
+shape = SubResource("RectangleShape2D_xepy2")
