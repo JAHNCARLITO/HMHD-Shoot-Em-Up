@@ -20,9 +20,9 @@ func count_enemies():
 	return get_tree().get_node_count_in_group("enemies")
 	
 func check_can_spawn():
-	if count_enemies() == 0:
+	if count_enemies() == 0 or count_enemies() < MOB_CAP:
 		can_spawn = true
-	elif count_enemies() >= MOB_CAP: 
+	elif count_enemies() == MOB_CAP: 
 		can_spawn = false
 
 func left_or_right(list):
@@ -32,5 +32,5 @@ func handle_spawn(enemy_scene: PackedScene, timer: Timer) -> void:
 	spawner_component.scene = enemy_scene
 	check_can_spawn()
 	if can_spawn:
-		spawner_component.spawn(Vector2(left_or_right(x_borders), randf_range(0, 0.5*screen_height)))
+		spawner_component.spawn(Vector2(left_or_right(x_borders), randf_range(0.05*screen_height, 0.35*screen_height)))
 	timer.start()
