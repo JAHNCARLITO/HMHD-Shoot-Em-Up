@@ -7,11 +7,17 @@ extends Node2D
 @onready var scale_component = $ScaleComponent
 @onready var move_component: MoveComponent = $MoveComponent
 @onready var animated_sprite_2D: AnimatedSprite2D = $Anchor/AnimatedSprite2D
+@onready var hurtbox_component = $HurtboxComponent
+@onready var flash_component = $FlashComponent
+@onready var stats_component = $StatsComponent
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	fire_rate_timer.timeout.connect(fire_lasers)
+	hurtbox_component.hurt.connect(func(hitbox: HitboxComponent):
+		scale_component.tween_scale()
+		flash_component.flash())
 
 func fire_lasers() -> void:
 	if Input.is_action_pressed("ui_accept"):

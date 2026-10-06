@@ -15,6 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://bqaegxwgrn17s" path="res://effects/explosion_effect.tscn" id="13_ugbui"]
 [ext_resource type="Script" uid="uid://s75ceve6w4ma" path="res://components/destroyed_component.gd" id="14_fcs02"]
 [ext_resource type="Script" uid="uid://coixhqnpfwn4d" path="res://components/hitbox_component.gd" id="15_fcs02"]
+[ext_resource type="Script" uid="uid://c2gw6t5lf30ht" path="res://components/flash_component.gd" id="16_myrg7"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_3vyb7"]
 atlas = ExtResource("1_3vyb7")
@@ -88,13 +89,14 @@ animations = [{
 size = Vector2(4, 14)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_myrg7"]
-size = Vector2(10, 23)
+size = Vector2(4, 23)
 
 [node name="Player" type="Node2D" unique_id=1478978707]
 script = ExtResource("1_qek5x")
 
 [node name="StatsComponent" type="Node" parent="." unique_id=2077294358]
 script = ExtResource("10_h17s1")
+health = 3
 metadata/_custom_type_script = "uid://dvgexy1qnqso0"
 
 [node name="Anchor" type="Node2D" parent="." unique_id=516970286]
@@ -179,3 +181,8 @@ metadata/_custom_type_script = "uid://coixhqnpfwn4d"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent" unique_id=714187357]
 position = Vector2(0, 5.5)
 shape = SubResource("RectangleShape2D_myrg7")
+
+[node name="FlashComponent" type="Node" parent="." unique_id=177391754 node_paths=PackedStringArray("sprite")]
+script = ExtResource("16_myrg7")
+sprite = NodePath("../Anchor/AnimatedSprite2D")
+metadata/_custom_type_script = "uid://c2gw6t5lf30ht"

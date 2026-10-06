@@ -1,10 +1,12 @@
 [gd_scene format=3 uid="uid://coar0w52ewb50"]
 
+[ext_resource type="Script" uid="uid://dg2d4sbof4djt" path="res://scenes/world.gd" id="1_k0juu"]
 [ext_resource type="PackedScene" uid="uid://be8qbmt0fe144" path="res://scenes/player/player.tscn" id="1_nnsk1"]
 [ext_resource type="Texture2D" uid="uid://crgaf1qvacusd" path="res://assets/Background_1/Background_1-3/Space BG_1-3_640x360.png" id="1_rwgxs"]
 [ext_resource type="PackedScene" uid="uid://b2ayxcirpbpw8" path="res://scenes/enemies/enemy_generator.tscn" id="4_k0juu"]
 
 [node name="World" type="Node2D" unique_id=1166276361]
+script = ExtResource("1_k0juu")
 metadata/_edit_horizontal_guides_ = [0.0]
 
 [node name="TextureRect" type="TextureRect" parent="." unique_id=1075180974]

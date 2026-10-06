@@ -83,12 +83,6 @@ script = ExtResource("9_n6cu6")
 scene = ExtResource("11_d2whb")
 metadata/_custom_type_script = "uid://06mj7arekrsx"
 
-[node name="ScaleComponent" type="Node" parent="ExplosionSpawnerComponent" unique_id=1259189811]
-script = ExtResource("4_uxcji")
-scale_amount = Vector2(0.3, 0.3)
-scale_duration = 1.0
-metadata/_custom_type_script = "uid://ba5ddbrjvkbe7"
-
 [node name="HurtComponent" type="Node" parent="." unique_id=1563439035 node_paths=PackedStringArray("stats_component", "hurtbox_component")]
 script = ExtResource("11_j7tug")
 stats_component = NodePath("../StatsComponent")
