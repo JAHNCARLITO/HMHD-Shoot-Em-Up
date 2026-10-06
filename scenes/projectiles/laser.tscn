@@ -6,6 +6,15 @@
 [ext_resource type="Script" uid="uid://ba5ddbrjvkbe7" path="res://components/scale_component.gd" id="4_uxcji"]
 [ext_resource type="Script" uid="uid://c2gw6t5lf30ht" path="res://components/flash_component.gd" id="5_w364t"]
 [ext_resource type="Script" uid="uid://coixhqnpfwn4d" path="res://components/hitbox_component.gd" id="6_avy1s"]
+[ext_resource type="Script" uid="uid://dvgexy1qnqso0" path="res://components/stats_component.gd" id="7_d2whb"]
+[ext_resource type="Script" uid="uid://s75ceve6w4ma" path="res://components/destroyed_component.gd" id="8_vc4ej"]
+[ext_resource type="Script" uid="uid://06mj7arekrsx" path="res://components/spawner_component.gd" id="9_n6cu6"]
+[ext_resource type="PackedScene" uid="uid://brh0hxwgkx7b0" path="res://effects/laser_explosion_effect.tscn" id="11_d2whb"]
+[ext_resource type="Script" uid="uid://dfiolafb2mqbl" path="res://components/hurt_component.gd" id="11_j7tug"]
+[ext_resource type="Script" uid="uid://7n8ufsahi0m3" path="res://components/hurtbox_component.gd" id="12_l5t3r"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qc24j"]
+size = Vector2(4, 4)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xepy2"]
 size = Vector2(4, 4)
@@ -40,6 +49,14 @@ sprite = NodePath("../Sprite2D")
 flash_duration = 0.1
 metadata/_custom_type_script = "uid://c2gw6t5lf30ht"
 
+[node name="HurtboxComponent" type="Area2D" parent="." unique_id=1858509768]
+script = ExtResource("12_l5t3r")
+metadata/_custom_type_script = "uid://7n8ufsahi0m3"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtboxComponent" unique_id=420376885]
+position = Vector2(0, 1)
+shape = SubResource("RectangleShape2D_qc24j")
+
 [node name="HitboxComponent" type="Area2D" parent="." unique_id=172898654]
 collision_layer = 0
 collision_mask = 2
@@ -49,3 +66,31 @@ metadata/_custom_type_script = "uid://coixhqnpfwn4d"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent" unique_id=1871288695]
 position = Vector2(0, 1)
 shape = SubResource("RectangleShape2D_xepy2")
+
+[node name="StatsComponent" type="Node" parent="." unique_id=318887312]
+script = ExtResource("7_d2whb")
+metadata/_custom_type_script = "uid://dvgexy1qnqso0"
+
+[node name="DestroyedComponent" type="Node" parent="." unique_id=837736462 node_paths=PackedStringArray("actor", "stats_component", "destroy_effect_spawner_component")]
+script = ExtResource("8_vc4ej")
+actor = NodePath("..")
+stats_component = NodePath("../StatsComponent")
+destroy_effect_spawner_component = NodePath("../ExplosionSpawnerComponent")
+metadata/_custom_type_script = "uid://s75ceve6w4ma"
+
+[node name="ExplosionSpawnerComponent" type="Node2D" parent="." unique_id=1877779738]
+script = ExtResource("9_n6cu6")
+scene = ExtResource("11_d2whb")
+metadata/_custom_type_script = "uid://06mj7arekrsx"
+
+[node name="ScaleComponent" type="Node" parent="ExplosionSpawnerComponent" unique_id=1259189811]
+script = ExtResource("4_uxcji")
+scale_amount = Vector2(0.3, 0.3)
+scale_duration = 1.0
+metadata/_custom_type_script = "uid://ba5ddbrjvkbe7"
+
+[node name="HurtComponent" type="Node" parent="." unique_id=1563439035 node_paths=PackedStringArray("stats_component", "hurtbox_component")]
+script = ExtResource("11_j7tug")
+stats_component = NodePath("../StatsComponent")
+hurtbox_component = NodePath("../HurtboxComponent")
+metadata/_custom_type_script = "uid://dfiolafb2mqbl"

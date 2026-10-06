@@ -1,0 +1,41 @@
+[gd_scene format=3 uid="uid://brh0hxwgkx7b0"]
+
+[ext_resource type="Script" uid="uid://bq7ttkr766dxh" path="res://components/one_time_animated_effect.gd" id="1_5yvqn"]
+[ext_resource type="Texture2D" uid="uid://cqvckpu7alwn" path="res://assets/SMS Space Shooter Assets/tile sheet 1.png" id="1_nio8v"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fk5f1"]
+atlas = ExtResource("1_nio8v")
+region = Rect2(54, 104, 9, 9)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oe5qr"]
+atlas = ExtResource("1_nio8v")
+region = Rect2(63, 104, 9, 9)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l7umf"]
+atlas = ExtResource("1_nio8v")
+region = Rect2(72, 104, 9, 9)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_nio8v"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fk5f1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oe5qr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l7umf")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 15.0
+}]
+
+[node name="LaserExplosionEffect" type="AnimatedSprite2D" unique_id=922720235]
+rotation = 4.712389
+sprite_frames = SubResource("SpriteFrames_nio8v")
+autoplay = "default"
+frame_progress = 0.37963298
+script = ExtResource("1_5yvqn")
+metadata/_custom_type_script = "uid://bq7ttkr766dxh"
