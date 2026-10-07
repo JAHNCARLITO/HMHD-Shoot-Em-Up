@@ -5,7 +5,7 @@ extends Node2D
 var margin = 100
 var screen_height = ProjectSettings.get_setting("display/window/size/viewport_height")
 var can_spawn = true
-const MOB_CAP = 6
+const MOB_CAP = 10
 
 var x_borders = [0,160]
 
@@ -20,9 +20,9 @@ func count_enemies():
 	return get_tree().get_node_count_in_group("enemies")
 	
 func check_can_spawn():
-	if count_enemies() == 0 or count_enemies() < MOB_CAP:
+	if count_enemies() == 0:
 		can_spawn = true
-	elif count_enemies() == MOB_CAP: 
+	elif count_enemies() >= MOB_CAP: 
 		can_spawn = false
 
 func left_or_right(list):

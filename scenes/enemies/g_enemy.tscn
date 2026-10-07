@@ -72,5 +72,4 @@ scene = ExtResource("5_28ker")
 metadata/_custom_type_script = "uid://06mj7arekrsx"
 
 [node name="EnemyFireRateTimer" type="Timer" parent="." index="13" unique_id=1529922234]
-wait_time = 3.0
 autostart = true

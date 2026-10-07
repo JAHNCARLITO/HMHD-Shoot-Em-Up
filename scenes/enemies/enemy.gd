@@ -17,6 +17,7 @@ extends Node2D
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	visible_on_screen_notifier_2d.screen_exited.connect(queue_free)
+	move_component.velocity.x = randf_range(20,100)
 	enemy_fire_rate_timer.timeout.connect(enemy_fire_lasers)
 	hurtbox_component.hurt.connect(func(hitbox: HitboxComponent):
 		scale_component.tween_scale()
