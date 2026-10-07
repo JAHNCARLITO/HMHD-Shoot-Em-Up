@@ -1,0 +1,82 @@
+[gd_scene format=3 uid="uid://cqriri36tqas7"]
+
+[ext_resource type="PackedScene" uid="uid://ctvhvi08inkp" path="res://scenes/enemies/enemy.tscn" id="1_raoyv"]
+[ext_resource type="Script" uid="uid://dlx0kjbn2mqiw" path="res://scenes/enemies/g2_enemy.gd" id="2_2gtmt"]
+[ext_resource type="Texture2D" uid="uid://jpq387m0qkpt" path="res://assets/SMS Space Shooter Assets/sprite sheet.png" id="2_5n8jr"]
+[ext_resource type="Script" uid="uid://db47jxd0kpd51" path="res://components/bounce_component.gd" id="3_2gtmt"]
+[ext_resource type="Script" uid="uid://06mj7arekrsx" path="res://components/spawner_component.gd" id="4_etxr2"]
+[ext_resource type="PackedScene" uid="uid://bcduv4v2rvqbq" path="res://scenes/projectiles/enemy_laser.tscn" id="5_c246c"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_etxr2"]
+atlas = ExtResource("2_5n8jr")
+region = Rect2(72, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_fcftc"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_etxr2")
+}],
+"loop": 1,
+"name": &"move",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qc24j"]
+size = Vector2(24, 20)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_qc24j"]
+
+[node name="G2Enemy" unique_id=270567738 groups=["enemies"] instance=ExtResource("1_raoyv")]
+script = ExtResource("2_2gtmt")
+
+[node name="AnimatedSprite2D" parent="." index="0" unique_id=247618018]
+sprite_frames = SubResource("SpriteFrames_fcftc")
+animation = &"move"
+autoplay = "move"
+
+[node name="MoveComponent" parent="." index="1" unique_id=1218803175]
+velocity = Vector2(20, 0)
+
+[node name="BounceComponent" type="Node" parent="." index="2" unique_id=1596759079 node_paths=PackedStringArray("move_component")]
+script = ExtResource("3_2gtmt")
+move_component = NodePath("../MoveComponent")
+metadata/_custom_type_script = "uid://db47jxd0kpd51"
+
+[node name="VisibleOnScreenNotifier2D" parent="." index="3" unique_id=1901591997]
+rect = Rect2(-13, -12, 27, 23)
+
+[node name="ScaleComponent" parent="." index="4" unique_id=1171800825]
+scale_duration = 1.0
+
+[node name="FlashComponent" parent="." index="5" unique_id=1005034716]
+flash_duration = 0.1
+
+[node name="StatsComponent" parent="." index="6" unique_id=1503786716]
+health = 2
+
+[node name="HurtboxComponent" parent="." index="7" unique_id=2026218762]
+light_mask = 2
+visibility_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtboxComponent" index="0" unique_id=1802953516]
+shape = SubResource("RectangleShape2D_qc24j")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent" parent_id_path=PackedInt32Array(2001757855) index="0" unique_id=780819325]
+position = Vector2(0, -1)
+shape = SubResource("CircleShape2D_qc24j")
+
+[node name="Muzzle" type="Marker2D" parent="." index="11" unique_id=2122047593]
+
+[node name="EnemyLaserSpawnerComponent" type="Node2D" parent="." index="12" unique_id=539196479]
+script = ExtResource("4_etxr2")
+scene = ExtResource("5_c246c")
+metadata/_custom_type_script = "uid://06mj7arekrsx"
+
+[node name="EnemyFireRateTimer" type="Timer" parent="." index="13" unique_id=1529922234]
+wait_time = 3.0
+autostart = true
+
+[node name="DirectionTimer" type="Timer" parent="." index="14" unique_id=125465208]
+wait_time = 4.0
+autostart = true

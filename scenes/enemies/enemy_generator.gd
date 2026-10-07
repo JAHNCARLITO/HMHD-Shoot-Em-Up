@@ -1,20 +1,23 @@
 extends Node2D
 
 @export var GEnemyScene: PackedScene
+@export var G2EnemyScene: PackedScene
 
 var margin = 100
 var screen_height = ProjectSettings.get_setting("display/window/size/viewport_height")
 var can_spawn = true
-const MOB_CAP = 6
+const MOB_CAP = 15
 
 var x_borders = [0,160]
 
 @onready var spawner_component = $SpawnerComponent
 @onready var g_enemy_spawn_timer = $gEnemySpawnTimer
+@onready var g2_enemy_spawn_timer = $g2EnemySpawnTimer
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	g_enemy_spawn_timer.timeout.connect(handle_spawn.bind(GEnemyScene, g_enemy_spawn_timer))
+	g2_enemy_spawn_timer.timeout.connect(handle_spawn.bind(G2EnemyScene, g2_enemy_spawn_timer))
 
 func count_enemies():
 	return get_tree().get_node_count_in_group("enemies")
@@ -22,7 +25,7 @@ func count_enemies():
 func check_can_spawn():
 	if count_enemies() == 0 or count_enemies() < MOB_CAP:
 		can_spawn = true
-	elif count_enemies() == MOB_CAP: 
+	elif count_enemies() >= MOB_CAP: 
 		can_spawn = false
 
 func left_or_right(list):
